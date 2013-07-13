@@ -6,6 +6,9 @@
 
 using namespace Polycode;
 
+/*
+ *	@author: unknown
+ */
 namespace Polycode {
 
 class _PolyExport PolycodeView : public PolycodeViewBase {

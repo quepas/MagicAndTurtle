@@ -13,29 +13,41 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Game">
+    <Filter Include="Source Files\App">
       <UniqueIdentifier>{9397d0b8-3d29-4944-8290-59ba2a735fd3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Game">
+    <Filter Include="Header Files\App">
       <UniqueIdentifier>{c0f40dcf-de27-4352-81da-6413bc0c386a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{566891f6-1b1f-461d-bba8-09817eddfa0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{c0674d5c-9a66-4040-8530-0c2507f299ba}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\MagicAndTurtleApp.cpp">
-      <Filter>Source Files\Game</Filter>
+      <Filter>Source Files\App</Filter>
     </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\PolycodeView.cpp">
+      <Filter>Source Files\App</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Player.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\MagicAndTurtleApp.h">
-      <Filter>Header Files\Game</Filter>
+      <Filter>Header Files\App</Filter>
     </ClInclude>
     <ClInclude Include="src\PolycodeView.h">
+      <Filter>Header Files\App</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Player.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
   </ItemGroup>

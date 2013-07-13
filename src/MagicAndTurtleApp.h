@@ -1,9 +1,13 @@
-#ifndef MAGIC_AND_TURTLE_APP_H_
-#define MAGIC_AND_TURTLE_APP_H_
+#pragma once
 
 #include <Polycode.h>
-#include "PolycodeView.h"
 
+#include "PolycodeView.h"
+#include "Player.h"
+
+/*
+ *	@author: quepas
+ */
 class MagicAndTurtleApp : public Polycode::EventHandler
 {
 	public:
@@ -12,8 +16,11 @@ class MagicAndTurtleApp : public Polycode::EventHandler
 
 		void Init();
 		bool Update();
+		void handleEvent(Polycode::Event* event);
 	private:
 		Polycode::Core* core;
-};
+		Player* player;
 
-#endif
+		void initEvents();
+		void handleInputEvent(Polycode::InputEvent* inputEvent);
+};

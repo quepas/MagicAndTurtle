@@ -69,10 +69,12 @@
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MagicAndTurtleApp.cpp" />
+    <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\PolycodeView.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\MagicAndTurtleApp.h" />
+    <ClInclude Include="src\Player.h" />
     <ClInclude Include="src\PolycodeView.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
