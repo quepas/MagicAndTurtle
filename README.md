@@ -1,4 +1,4 @@
 Magic-Turtle
 ============
 
-2d platform just for WSoC2013 and some fame
+2d platform game just for WSoC2013 and some fame
