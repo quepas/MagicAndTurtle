@@ -9,24 +9,33 @@
 class Player : public Polycode::ScreenImage
 {	
 	public:
-		enum DIRECTION
+		enum MOTION
 		{
 			LEFT = 0,
 			RIGHT = 1,
 			UP = 2,
-			DOWN = 3
+			DOWN = 3,
+			JUMP = 4,
+			JUMP_RAISE = 5,
+			JUMP_FALL = 6			 
 		};
 
 		Player(int x, int y, const Polycode::String& fileName);
-		
-		void beginMove(DIRECTION direction);
-		void endMove(DIRECTION direction);
+				
+		void beginMove(MOTION direction);
+		void endMove(MOTION direction);
+		void Jump();
 
 		void Update();
 
-		static const int MOVEMENT_SPEED = 10;
+		static const Number MOVEMENT_SPEED;
+		static const Number JUMP_MAX_SPEED;
+		static const Number JUMP_SPEED_DIVIDER;
 	private:
-		bool activeMoves[4];
+		bool activeMoves[7];
+		Polycode::Vector2 motionVector; // TODO: for vector-based movement
+		Polycode::Vector2 jumpVector;
 
 		Polycode::Vector3 calculateMovement();
+		Polycode::Vector3 calculateJump();
 };

@@ -6,7 +6,7 @@ using namespace Polycode;
 
 MagicAndTurtleApp::MagicAndTurtleApp(PolycodeView* view) : EventHandler() 
 {
-	core = new POLYCODE_CORE(view, 640,480,false,false,0,0,90);			
+	core = new POLYCODE_CORE(view, 640, 480, false, false, 0, 0, 60);			
 }
 
 void MagicAndTurtleApp::Init()
@@ -17,7 +17,7 @@ void MagicAndTurtleApp::Init()
 	initEvents();
 
 	Screen *screen = new Screen();					
-	player = new Player(200, 0, "res/wizard/walk_1.png");	
+	player = new Player(320, 240, "res/wizard/walk_1.png");	
 	player -> setPositionMode(ScreenEntity::POSITION_CENTER);
 	screen -> addChild(player);	
 }
@@ -63,6 +63,7 @@ void MagicAndTurtleApp::handleInputEvent(InputEvent* inputEvent)
 						player -> beginMove(Player::DOWN);
 						break;
 					case KEY_SPACE:
+						player -> Jump();
 						break;
 				}
 				break;
