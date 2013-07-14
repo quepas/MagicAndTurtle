@@ -2,11 +2,13 @@
 
 using namespace Polycode;
 
-const Number Player::MOVEMENT_SPEED = Number(1.2);
-const Number Player::JUMP_MAX_SPEED = Number(2.0);
+const Number Player::MOVEMENT_SPEED = Number(10);
+const Number Player::JUMP_MAX_SPEED = Number(40);
 const Number Player::JUMP_SPEED_DIVIDER = Number(80.0);
 
-Player::Player(int x, int y, const String& fileName) : ScreenImage(fileName)
+Player::Player(Polycode::PhysicsScreen* _screen, int x, int y, 
+	const Polycode::String& fileName)
+	: ScreenImage(fileName), screen(_screen)
 {
 	setPosition(x, y);
 
@@ -43,18 +45,19 @@ void Player::Jump()
 void Player::Update()
 {
 	ScreenImage::Update();
-	Translate(calculateMovement());
+	Vector2 movement = calculateMovement();
+	screen -> setVelocity(this, movement.x, movement.y);
 }
 
-Vector3 Player::calculateMovement()
+Vector2 Player::calculateMovement()
 {
-	Vector3 movement = Vector3(0);	
+	Vector2 movement = Vector2(0, 0);	
 
 	if(activeMoves[LEFT]) {
-		movement.x -= MOVEMENT_SPEED;
+		movement.x -= MOVEMENT_SPEED;		
 	}
 	if(activeMoves[RIGHT]) {
-		movement.x += MOVEMENT_SPEED;
+		movement.x += MOVEMENT_SPEED;		
 	}
 	if(activeMoves[UP]) {
 		//movement.y -= MOVEMENT_SPEED;
@@ -63,38 +66,25 @@ Vector3 Player::calculateMovement()
 		//movement.y += MOVEMENT_SPEED;
 	}
 	if(activeMoves[JUMP]) {
-		movement += calculateJump();			
+		movement += calculateJump();					
 	}
 	
 	return movement;
 }
 
-Vector3 Player::calculateJump()
+Vector2 Player::calculateJump()
 {
-	Vector3 jump = Vector3(0);
+	Vector2 jump = Vector2(0, 0);
 
 	if(activeMoves[JUMP_RAISE]) 
 	{
-		jump = Vector3(jumpVector.x, jumpVector.y, 0);
+		jump = Vector2(jumpVector.x, jumpVector.y);
 		jumpVector += Vector2(0, JUMP_MAX_SPEED / JUMP_SPEED_DIVIDER);
 
 		if(jumpVector.y >= 0) {
 			jumpVector = Vector2(0, 0);
 			activeMoves[JUMP_RAISE] = false;
 			activeMoves[JUMP_FALL] = true;
-		}
-	} 
-	else if(activeMoves[JUMP_FALL]) 
-	{		
-		jump = Vector3(jumpVector.x, jumpVector.y, 0);
-		jumpVector += Vector2(0, JUMP_MAX_SPEED / JUMP_SPEED_DIVIDER);
-
-		// TODO: check for collision!
-		if(jumpVector.y >= JUMP_MAX_SPEED) {
-			jumpVector = Vector2(0, JUMP_MAX_SPEED);
-			activeMoves[JUMP] = false;
-			activeMoves[JUMP_RAISE] = false;
-			activeMoves[JUMP_FALL] = false;
 		}
 	}
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <PolyScreenImage.h>
+#include <PolyPhysicsScreen.h>
 #include <PolyString.h>
 
 /*
@@ -19,8 +20,9 @@ class Player : public Polycode::ScreenImage
 			JUMP_RAISE = 5,
 			JUMP_FALL = 6			 
 		};
-
-		Player(int x, int y, const Polycode::String& fileName);
+		
+		Player(Polycode::PhysicsScreen* screen, int x, int y, 
+			const Polycode::String& fileName);
 				
 		void beginMove(MOTION direction);
 		void endMove(MOTION direction);
@@ -35,7 +37,8 @@ class Player : public Polycode::ScreenImage
 		bool activeMoves[7];
 		Polycode::Vector2 motionVector; // TODO: for vector-based movement
 		Polycode::Vector2 jumpVector;
+		Polycode::PhysicsScreen* screen;
 
-		Polycode::Vector3 calculateMovement();
-		Polycode::Vector3 calculateJump();
+		Polycode::Vector2 calculateMovement();
+		Polycode::Vector2 calculateJump();
 };

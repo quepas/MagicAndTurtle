@@ -37,10 +37,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\Programowanie\Biblioteki\Polycode\Release\Windows\Framework\Core\Dependencies\include\AL;D:\Programy\Visual Studio 2010 Professional\VC\include;D:\Programowanie\Biblioteki\Polycode\Release\Windows\Framework\Core\Dependencies\include\;D:\Programowanie\Biblioteki\Polycode\Release\Windows\Framework\Core\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Programowanie\Biblioteki\Polycode\Release\Windows\Framework\Modules\Dependencies\include\bullet;D:\Programowanie\Biblioteki\Polycode\Release\Windows\Framework\Modules\Dependencies\include;D:\Programowanie\Biblioteki\Polycode\Release\Windows\Framework\Modules\include;D:\Programowanie\Biblioteki\Polycode\Release\Windows\Framework\Core\Dependencies\include\AL;D:\Programy\Visual Studio 2010 Professional\VC\include;D:\Programowanie\Biblioteki\Polycode\Release\Windows\Framework\Core\Dependencies\include\;D:\Programowanie\Biblioteki\Polycode\Release\Windows\Framework\Core\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>D:\Programowanie\Biblioteki\Polycode\Release\Windows\Framework\Core\Dependencies\lib;D:\Programowanie\Biblioteki\Polycode\Release\Windows\Framework\Core\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>D:\Programowanie\Biblioteki\Polycode\Release\Windows\Framework\Modules\Dependencies\lib;D:\Programowanie\Biblioteki\Polycode\Release\Windows\Framework\Modules\lib;D:\Programowanie\Biblioteki\Polycode\Release\Windows\Framework\Core\Dependencies\lib;D:\Programowanie\Biblioteki\Polycode\Release\Windows\Framework\Core\lib;$(LibraryPath)</LibraryPath>
     <SourcePath>D:\Programowanie\Biblioteki\Polycode\Core\Contents\Source;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -50,7 +50,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Polycore_d.lib;zlibd.lib;freetype_d.lib;liboggd.lib;libvorbisd.lib;libvorbisfiled.lib;OpenAL32d.lib;physfsd.lib;libpng15_staticd.lib;opengl32.lib;glu32.lib;winmm.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Polycore_d.lib;Polycode2DPhysics_d.lib;Box2D_d.lib;zlibd.lib;freetype_d.lib;liboggd.lib;libvorbisd.lib;libvorbisfiled.lib;OpenAL32d.lib;physfsd.lib;libpng15_staticd.lib;opengl32.lib;glu32.lib;winmm.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -69,11 +69,13 @@
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MagicAndTurtleApp.cpp" />
+    <ClCompile Include="src\Platform.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\PolycodeView.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\MagicAndTurtleApp.h" />
+    <ClInclude Include="src\Platform.h" />
     <ClInclude Include="src\Player.h" />
     <ClInclude Include="src\PolycodeView.h" />
   </ItemGroup>

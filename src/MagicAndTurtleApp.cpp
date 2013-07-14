@@ -1,12 +1,14 @@
 #include "MagicAndTurtleApp.h"
 
 #include <PolyWinCore.h>
+#include <PolyPhysicsScreenEntity.h>
 
 using namespace Polycode;
 
 MagicAndTurtleApp::MagicAndTurtleApp(PolycodeView* view) : EventHandler() 
 {
 	core = new POLYCODE_CORE(view, 640, 480, false, false, 0, 0, 60);			
+	screen = new PhysicsScreen();	
 }
 
 void MagicAndTurtleApp::Init()
@@ -15,11 +17,16 @@ void MagicAndTurtleApp::Init()
 	CoreServices::getInstance()->getResourceManager()->addDirResource("default", false);
 
 	initEvents();
-
-	Screen *screen = new Screen();					
-	player = new Player(320, 240, "res/wizard/walk_1.png");	
+	
+	player = new Player(screen, 320, 240, "res/wizard/walk_1.png");	
 	player -> setPositionMode(ScreenEntity::POSITION_CENTER);
-	screen -> addChild(player);	
+	screen -> addPhysicsChild(player, PhysicsScreenEntity::ENTITY_RECT, false);
+
+	Platform* platform = new Platform(320, 500, "res/platform/normal_1.png");	
+	screen -> addPhysicsChild(platform, PhysicsScreenEntity::ENTITY_RECT, true);
+
+	Platform* platform2 = new Platform(400, 200, "res/platform/small_1.png");	
+	screen -> addPhysicsChild(platform2, PhysicsScreenEntity::ENTITY_RECT, true);
 }
 
 bool MagicAndTurtleApp::Update()
@@ -50,10 +57,10 @@ void MagicAndTurtleApp::handleInputEvent(InputEvent* inputEvent)
 			case InputEvent::EVENT_KEYDOWN:
 				switch (inputEvent -> getKey())
 				{
-					case KEY_LEFT:
+					case KEY_LEFT:								
 						player -> beginMove(Player::LEFT);
 						break;
-					case KEY_RIGHT:
+					case KEY_RIGHT:						
 						player -> beginMove(Player::RIGHT);
 						break;
 					case KEY_UP:
