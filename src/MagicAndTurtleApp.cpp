@@ -20,7 +20,7 @@ void MagicAndTurtleApp::Init()
 	
 	player = new Player(screen, 320, 240, "res/wizard/walk_1.png");	
 	player -> setPositionMode(ScreenEntity::POSITION_CENTER);
-	screen -> addPhysicsChild(player, PhysicsScreenEntity::ENTITY_RECT, false);
+	screen -> addPhysicsChild(player, PhysicsScreenEntity::ENTITY_MESH, false);
 
 	Platform* platform = new Platform(320, 500, "res/platform/normal_1.png");	
 	screen -> addPhysicsChild(platform, PhysicsScreenEntity::ENTITY_RECT, true);
