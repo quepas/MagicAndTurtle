@@ -2,12 +2,13 @@
 
 
 
-GameMenu::GameMenu(Polycode::Core* core,int intervalTop,int fontSize)
+GameMenu::GameMenu(Polycode::Core* core , int intervalTop, int fontSize)
 {	
+	this->credits=0;
 	int height=0;
 	int width=0;
 	this->currentActiveItemNumber=0;
-
+	this->core=core;
 	screen= new Polycode::Screen();
 	width=core->getXRes();
 	height=core->getYRes();
@@ -74,3 +75,24 @@ void GameMenu::goUp(){
 		menuItems[currentActiveItemNumber]->setColorInt(255,0,0,255);
 		}
 	}
+
+void GameMenu::performAction(){
+	switch(currentActiveItemNumber){
+		case 0:		//newGame();
+					break;
+		case 1:		//loadGame();
+					break;
+		case 2:		credits= new Credits(this->core);
+					break;
+		case 3:		exit(0);
+					break;
+
+	}
+
+}
+
+void GameMenu::deleteCredits(){
+	if(this->credits){
+		delete credits;
+	}
+}

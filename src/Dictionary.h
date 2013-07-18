@@ -11,6 +11,9 @@ public:
 	static const Polycode::String MENU_LOAD_GAME;
 	static const Polycode::String MENU_CREDITS;
 	static const Polycode::String MENU_EXIT;
-
+	static const Polycode::String CREDITS_TEXT_0;
+	static const Polycode::String CREDITS_TEXT_1;
+	static const Polycode::String CREDITS_TEXT_2;
+	static const Polycode::String CREDITS_TEXT_3;
 };
 

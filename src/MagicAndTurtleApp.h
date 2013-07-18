@@ -6,6 +6,9 @@
 #include "PolycodeView.h"
 #include "Player.h"
 #include "Platform.h"
+
+class GameMenu; 
+
 #include "GameMenu.h"
 
 /*
@@ -16,7 +19,8 @@ class MagicAndTurtleApp : public Polycode::EventHandler
 	public:
 		MagicAndTurtleApp(PolycodeView* view);
 		~MagicAndTurtleApp() {};
-
+		bool menuShown;
+		bool creditsShown;
 		void Init();
 		bool Update();
 		void handleEvent(Polycode::Event* event);
@@ -25,7 +29,6 @@ class MagicAndTurtleApp : public Polycode::EventHandler
 		Polycode::Core* core;
 		Polycode::PhysicsScreen* screen;
 		Player* player;		
-		bool menuShown;
 		GameMenu* menu;
 		void initEvents();
 		void handleInputEvent(Polycode::InputEvent* inputEvent);

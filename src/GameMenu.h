@@ -6,8 +6,7 @@
 #include <vector>
 #include "PolycodeView.h"
 #include "Dictionary.h"
-
-
+#include "Credits.h"
 
 
 class GameMenu
@@ -15,19 +14,18 @@ class GameMenu
 public:
 	GameMenu(Polycode::Core* core,int intervalTop,int fontSize);
 	~GameMenu(void);
-	void GameMenu::handleEvent(Event* event);
 	void goDown();
 	void goUp();
 	int  getcurrentActiveItemNumber();
+	void performAction();
+	void deleteCredits();
 private:
 	ScreenImage* logo;
 	vector<ScreenLabel*> menuItems;
 	Polycode::Screen* screen;
 	Polycode::Core* core;
+	Credits* credits;
 	int menuItemsnumber;
-	void handleInputEvent(Polycode::InputEvent* inputEvent);
 	int currentActiveItemNumber;
-	
-
-};
+	};
 
