@@ -17,7 +17,10 @@ void MagicAndTurtleApp::Init()
 	CoreServices::getInstance()->getResourceManager()->addDirResource("default", false);
 
 	initEvents();
-	
+
+	menuShown=true;
+	menu = new GameMenu(screen,core,40,32);
+		
 	player = new Player(screen, 320, 240, "res/wizard/walk_1.png");	
 	player -> setPositionMode(ScreenEntity::POSITION_CENTER);
 	screen -> addPhysicsChild(player, PhysicsScreenEntity::ENTITY_MESH, false);
