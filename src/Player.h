@@ -27,6 +27,7 @@ class Player : public Polycode::ScreenImage
 		void beginMove(MOTION direction);
 		void endMove(MOTION direction);
 		void Jump();
+		void Teleport(Polycode::Vector2 pos);
 
 		void Update();
 

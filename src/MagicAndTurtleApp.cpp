@@ -19,7 +19,7 @@ void MagicAndTurtleApp::Init()
 	initEvents();
 
 	menuShown=true;
-	menu = new GameMenu(screen,core,40,32);
+	menu = new GameMenu(core,40,32);
 		
 	player = new Player(screen, 320, 240, "res/wizard/walk_1.png");	
 	player -> setPositionMode(ScreenEntity::POSITION_CENTER);
@@ -58,6 +58,25 @@ void MagicAndTurtleApp::handleInputEvent(InputEvent* inputEvent)
 		switch(inputEvent -> getEventCode()) 
 		{	
 			case InputEvent::EVENT_KEYDOWN:
+				if(menuShown){
+				switch (inputEvent -> getKey())
+				{
+					case KEY_UP:
+						menu->goUp();
+						break;
+					case KEY_DOWN:
+						menu->goDown();
+						break;
+					case KEY_SPACE:
+						menuShown=false();
+						delete menu;
+						break;
+				}
+
+				}
+				else{
+
+
 				switch (inputEvent -> getKey())
 				{
 					case KEY_LEFT:								
@@ -76,7 +95,7 @@ void MagicAndTurtleApp::handleInputEvent(InputEvent* inputEvent)
 						player -> Jump();
 						break;
 				}
-				break;
+				break;}
 			case InputEvent::EVENT_KEYUP:
 				switch(inputEvent -> getKey())
 				{

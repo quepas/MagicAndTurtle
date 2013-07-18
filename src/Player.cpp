@@ -1,5 +1,6 @@
 #include "Player.h"
 
+
 using namespace Polycode;
 
 const Number Player::MOVEMENT_SPEED = Number(10);
@@ -51,6 +52,7 @@ void Player::Update()
 
 Vector2 Player::calculateMovement()
 {
+
 	Vector2 movement = Vector2(0, 0);	
 
 	if(activeMoves[LEFT]) {
@@ -67,8 +69,7 @@ Vector2 Player::calculateMovement()
 	}
 	if(activeMoves[JUMP]) {
 		movement += calculateJump();					
-	}
-	
+	}	
 	return movement;
 }
 
@@ -89,4 +90,8 @@ Vector2 Player::calculateJump()
 	}
 
 	return jump;
+}
+
+void Player::Teleport(Vector2 pos){
+	setPosition(pos);
 }
