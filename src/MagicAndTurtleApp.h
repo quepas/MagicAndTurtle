@@ -24,10 +24,10 @@ class MagicAndTurtleApp : public Polycode::EventHandler
 		void Init();
 		bool Update();
 		void handleEvent(Polycode::Event* event);
-	private:
 
-		Polycode::Core* core;
-		Polycode::PhysicsScreen* screen;
+	private:
+		Polycode::PhysicsScreen* screen;		
+		Polycode::Core* core;		
 		Player* player;		
 		GameMenu* menu;
 		void initEvents();

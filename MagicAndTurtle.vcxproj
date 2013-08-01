@@ -67,17 +67,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\ColorToColor.cpp" />
+    <ClCompile Include="src\Credits.cpp" />
+    <ClCompile Include="src\Dictionary.cpp" />
+    <ClCompile Include="src\GameMenu.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MagicAndTurtleApp.cpp" />
     <ClCompile Include="src\Platform.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\PolycodeView.cpp" />
+    <ClCompile Include="src\Portal.cpp" />
+    <ClCompile Include="src\Transition.cpp" />
+    <ClCompile Include="src\TransitionMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\ColorToColor.h" />
+    <ClInclude Include="src\Credits.h" />
+    <ClInclude Include="src\Dictionary.h" />
+    <ClInclude Include="src\GameMenu.h" />
     <ClInclude Include="src\MagicAndTurtleApp.h" />
     <ClInclude Include="src\Platform.h" />
     <ClInclude Include="src\Player.h" />
     <ClInclude Include="src\PolycodeView.h" />
+    <ClInclude Include="src\Portal.h" />
+    <ClInclude Include="src\SingleEntityTransition.h" />
+    <ClInclude Include="src\Transition.h" />
+    <ClInclude Include="src\TransitionMgr.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

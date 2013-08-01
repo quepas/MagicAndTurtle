@@ -5,9 +5,11 @@
 
 using namespace Polycode;
 
-int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, 
+	LPSTR lpCmdLine, int nCmdShow)
 {
-	PolycodeView *view = new PolycodeView(hInstance, nCmdShow, "Magic&Turtle");
+	PolycodeView *view = new PolycodeView(hInstance, 
+		nCmdShow, "Magic&Turtle");
 	MagicAndTurtleApp *app = new MagicAndTurtleApp(view);
 	app -> Init();
 

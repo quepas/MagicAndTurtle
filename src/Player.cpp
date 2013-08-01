@@ -22,7 +22,7 @@ Player::Player(Polycode::PhysicsScreen* _screen, int x, int y,
 	activeMoves[JUMP_FALL] = false;
 
 	motionVector = Vector2(0, 0);
-	jumpVector = Vector2(0, 0);
+	jumpVector = Vector2(0, 0);	
 }
 
 void Player::beginMove(MOTION direction)
@@ -32,22 +32,29 @@ void Player::beginMove(MOTION direction)
 
 void Player::endMove(MOTION direction)
 {
+	if(activeMoves[LEFT] || activeMoves[RIGHT]) {
+		screen -> setVelocityX(this, 0);
+	}	
 	activeMoves[direction] = false;
 }
 
 void Player::Jump()
-{
-	activeMoves[JUMP] = true;	
-	activeMoves[JUMP_RAISE] = true;
+{	
+	//if(!activeMoves[JUMP_RAISE]) TODO: check if falling collision takes place
+	{
+		activeMoves[JUMP] = true;	
+		activeMoves[JUMP_RAISE] = true;
 
-	jumpVector = Vector2(0, -JUMP_MAX_SPEED);
+		jumpVector = Vector2(0, -JUMP_MAX_SPEED);
+	}	
 }
 
 void Player::Update()
 {
 	ScreenImage::Update();
 	Vector2 movement = calculateMovement();
-	screen -> setVelocity(this, movement.x, movement.y);
+	this -> setColor(color);
+	screen -> setVelocity(this, movement.x, movement.y);	
 }
 
 Vector2 Player::calculateMovement()

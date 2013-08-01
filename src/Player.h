@@ -41,5 +41,5 @@ class Player : public Polycode::ScreenImage
 		Polycode::PhysicsScreen* screen;
 
 		Polycode::Vector2 calculateMovement();
-		Polycode::Vector2 calculateJump();
+		Polycode::Vector2 calculateJump();		
 };
