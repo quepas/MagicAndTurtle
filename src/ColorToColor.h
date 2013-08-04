@@ -4,6 +4,9 @@
 #include <PolyColor.h>
 #include <PolyScreenEntity.h>
 
+/*
+ *	@author: quepas
+ */
 class ColorToColor : public SingleEntityTransition
 {
 	public:

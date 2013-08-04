@@ -4,6 +4,9 @@
 
 #include "Transition.h"
 
+/*
+ *	@author: quepas
+ */
 class TransitionMgr
 {
 	public:

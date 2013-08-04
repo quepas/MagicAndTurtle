@@ -3,6 +3,9 @@
 #include "Transition.h"
 #include <PolyScreenEntity.h>
 
+/*
+ *	@author: quepas
+ */
 class SingleEntityTransition : public Transition
 {
 	public:

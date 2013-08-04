@@ -9,11 +9,21 @@
 
 using namespace Polycode;
 
-MagicAndTurtleApp::MagicAndTurtleApp(PolycodeView* view) : EventHandler() 
+Vector2 MagicAndTurtleApp::resolution = Vector2(640, 480);
+
+MagicAndTurtleApp::MagicAndTurtleApp(PolycodeView* view, 
+	Vector2 res /* = Vector2(640, 480) */, bool fullscreen /* = false*/)
+	: EventHandler()
 {
-	core = new POLYCODE_CORE(view, 640, 480, false, false, 0, 0, 60);			
+	resolution = res;
+	core = new POLYCODE_CORE(view, resolution.x, resolution.y, fullscreen, false, 0, 0, 60);			
 	screen = new PhysicsScreen();
-	creditsShown = false;	
+	creditsShown = false;		
+}
+
+Vector2 MagicAndTurtleApp::getResolution()
+{
+	return resolution;
 }
 
 void MagicAndTurtleApp::Init()
@@ -42,6 +52,8 @@ void MagicAndTurtleApp::Init()
 	fire -> setPosition(100, 100);
 	fire -> setPerlinModSize(34);
 	screen -> addPhysicsChild(fire, PhysicsScreenEntity::ENTITY_MESH, true);
+
+	screenScroller = new ScreenScroller(screen, player);
 }
 
 bool MagicAndTurtleApp::Update()
@@ -65,6 +77,9 @@ void MagicAndTurtleApp::initEvents()
 
 void MagicAndTurtleApp::handleInputEvent(InputEvent* inputEvent)
 {	
+	static Number currentX = 0.0;
+	static Number currentY = 0.0;
+
 	if(inputEvent) 
 	{
 		switch(inputEvent -> getEventCode()) 
@@ -148,10 +163,8 @@ void MagicAndTurtleApp::handleInputEvent(InputEvent* inputEvent)
 						break;
 					case KEY_u:
 						TransitionMgr::getInstance().pauseAll(false);
-						break;
-					case KEY_MINUS:
-						break;
-				}
+						break;								
+				}				
 				break;
 		}
 	}

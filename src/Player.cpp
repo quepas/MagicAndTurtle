@@ -53,8 +53,11 @@ void Player::Update()
 {
 	ScreenImage::Update();
 	Vector2 movement = calculateMovement();
-	this -> setColor(color);
-	screen -> setVelocity(this, movement.x, movement.y);	
+	screen -> setVelocity(this, movement.x, movement.y);
+
+	// player moves
+	Event* event = new Event(Event::EVENTBASE_NONPOLYCODE+1);	
+	this -> dispatchEvent(event, Event::EVENTBASE_NONPOLYCODE+1);
 }
 
 Vector2 Player::calculateMovement()
