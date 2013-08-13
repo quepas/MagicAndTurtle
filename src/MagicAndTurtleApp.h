@@ -7,8 +7,6 @@
 #include "Player.h"
 #include "Platform.h"
 
-class GameMenu; 
-
 #include "GameMenu.h"
 #include "ScreenScroller.h"
 
@@ -25,7 +23,7 @@ class MagicAndTurtleApp : public Polycode::EventHandler
 		void Init();
 		bool Update();
 		void handleEvent(Polycode::Event* event);
-
+		
 		static Vector2 getResolution();
 	private:
 		Polycode::PhysicsScreen* screen;		

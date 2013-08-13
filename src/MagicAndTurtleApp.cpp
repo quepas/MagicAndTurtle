@@ -16,7 +16,7 @@ MagicAndTurtleApp::MagicAndTurtleApp(PolycodeView* view,
 	: EventHandler()
 {
 	resolution = res;
-	core = new POLYCODE_CORE(view, resolution.x, resolution.y, fullscreen, false, 0, 0, 60);			
+	core = new POLYCODE_CORE(view, resolution.x, resolution.y, fullscreen, true, 0, 0, 60);			
 	screen = new PhysicsScreen();
 	creditsShown = false;		
 }
@@ -33,9 +33,9 @@ void MagicAndTurtleApp::Init()
 
 	initEvents();
 	menuShown=true;
-	menu = new GameMenu(core,40,32);
+	menu = new GameMenu(core, 40, 32);
 			
-	player = new Player(screen, 320, 240, "res/wizard/walk_1.png");	
+	player = new Player(screen, 320, 240, "res/wizard/wizard.png");	
 	player -> setPositionMode(ScreenEntity::POSITION_CENTER);
 	screen -> addPhysicsChild(player, PhysicsScreenEntity::ENTITY_MESH, false,0.1,1,0,false,true);
 
@@ -54,6 +54,10 @@ void MagicAndTurtleApp::Init()
 	screen -> addPhysicsChild(fire, PhysicsScreenEntity::ENTITY_MESH, true);
 
 	screenScroller = new ScreenScroller(screen, player);
+
+	ScreenImage* tree = new ScreenImage("res/tree/tree1.png");
+	tree -> setPosition(0, 0);	
+	screen -> addChild(tree);
 }
 
 bool MagicAndTurtleApp::Update()
@@ -76,10 +80,7 @@ void MagicAndTurtleApp::initEvents()
 }
 
 void MagicAndTurtleApp::handleInputEvent(InputEvent* inputEvent)
-{	
-	static Number currentX = 0.0;
-	static Number currentY = 0.0;
-
+{		
 	if(inputEvent) 
 	{
 		switch(inputEvent -> getEventCode()) 
