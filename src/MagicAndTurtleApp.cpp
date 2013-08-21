@@ -3,9 +3,11 @@
 #include <PolyWinCore.h>
 #include <PolyPhysicsScreenEntity.h>
 #include <PolyColor.h>
+#include <iostream>
 
 #include "ColorToColor.h"
 #include "TransitionMgr.h"
+#include "LayeredEntity.h"
 
 using namespace Polycode;
 
@@ -53,11 +55,20 @@ void MagicAndTurtleApp::Init()
 	fire -> setPerlinModSize(34);
 	screen -> addPhysicsChild(fire, PhysicsScreenEntity::ENTITY_MESH, true);
 
-	screenScroller = new ScreenScroller(screen, player);
-
+	screenScroller = new ScreenScroller(screen, player);	
 	ScreenImage* tree = new ScreenImage("res/tree/tree1.png");
-	tree -> setPosition(0, 0);	
-	screen -> addChild(tree);
+	tree -> setPosition(-150, 0);		
+	ScreenImage* tree2 = new ScreenImage("res/tree/tree2.png");
+	tree2 -> setPosition(0, 0);	
+	ScreenImage* tree3 =new ScreenImage("res/tree/tree3.png");
+	tree3 -> setPosition(-30, 0);	
+
+	// forest
+	LayeredEntity* forest = new LayeredEntity(3);
+	screen -> addChild(forest);
+	forest -> Add(tree, 3);
+	forest -> Add(tree2, 2);
+	forest -> Add(tree3, 1);	
 }
 
 bool MagicAndTurtleApp::Update()
@@ -98,7 +109,7 @@ void MagicAndTurtleApp::handleInputEvent(InputEvent* inputEvent)
 						case KEY_SPACE:
 							menu->performAction();
 								if(menu->getcurrentActiveItemNumber()!=2){
-									menuShown=false();
+									menuShown=false;
 									delete menu;
 									return;
 									}

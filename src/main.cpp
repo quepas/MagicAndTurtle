@@ -9,8 +9,8 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
 {
 	PolycodeView *view = new PolycodeView(hInstance, 
-		nCmdShow, "Magic&Turtle");
-	MagicAndTurtleApp *app = new MagicAndTurtleApp(view, Vector2(1280, 720), true);
+		nCmdShow, "Magic&Turtle", false, true);
+	MagicAndTurtleApp *app = new MagicAndTurtleApp(view, Vector2(800, 600), false);
 	app -> Init();
 
 	MSG msg;
