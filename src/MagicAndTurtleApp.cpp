@@ -11,7 +11,7 @@
 
 using namespace Polycode;
 
-Vector2 MagicAndTurtleApp::resolution = Vector2(640, 480);
+Vector2 MagicAndTurtleApp::resolution;
 
 MagicAndTurtleApp::MagicAndTurtleApp(PolycodeView* view, 
 	Vector2 res /* = Vector2(640, 480) */, bool fullscreen /* = false*/)
@@ -37,15 +37,15 @@ void MagicAndTurtleApp::Init()
 	menuShown=true;
 	menu = new GameMenu(core, 40, 32);
 			
-	player = new Player(screen, 320, 240, "res/wizard/wizard.png");	
+	player = new Player(screen, 88, 0, "res/wizard/wizard.png");	
 	player -> setPositionMode(ScreenEntity::POSITION_CENTER);
 	screen -> addPhysicsChild(player, PhysicsScreenEntity::ENTITY_MESH, false,0.1,1,0,false,true);
 
-	Platform* platform = new Platform(320, 500, "res/platform/normal_1.png");	
+	Platform* platform = new Platform(0, 300, "res/platform/normal_1.png");	
 	screen -> addPhysicsChild(platform, PhysicsScreenEntity::ENTITY_RECT, true);
 
-	Platform* platform2 = new Platform(400, 200, "res/platform/small_1.png");	
-	screen -> addPhysicsChild(platform2, PhysicsScreenEntity::ENTITY_RECT, true);
+	/*Platform* platform2 = new Platform(400, 200, "res/platform/small_1.png");	
+	screen -> addPhysicsChild(platform2, PhysicsScreenEntity::ENTITY_RECT, true);*/
 
 	ScreenParticleEmitter* fire = new ScreenParticleEmitter(
 		"res/fire/fire_particle.png", Particle::BILLBOARD_PARTICLE, ParticleEmitter::CONTINUOUS_EMITTER, 10, 100, 
@@ -64,11 +64,13 @@ void MagicAndTurtleApp::Init()
 	tree3 -> setPosition(-30, 0);	
 
 	// forest
-	LayeredEntity* forest = new LayeredEntity(3);
-	screen -> addChild(forest);
+	ParallaxBackground* forest = new ParallaxBackground();
+	//screen -> addChild(forest);
 	forest -> Add(tree, 3);
 	forest -> Add(tree2, 2);
 	forest -> Add(tree3, 1);	
+
+	screenScroller->setBackground(forest);
 }
 
 bool MagicAndTurtleApp::Update()

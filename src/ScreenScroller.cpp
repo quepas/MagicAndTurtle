@@ -1,7 +1,7 @@
 #include "ScreenScroller.h"
 
 #include "MagicAndTurtleApp.h"
-
+#include <iostream>
 using namespace Polycode;
 
 ScreenScroller::ScreenScroller(Screen* _screen, ScreenEntity* _entity /* = nullptr */)
@@ -15,7 +15,10 @@ void ScreenScroller::setCenterEntity(ScreenEntity* _entity)
 	if(_entity)
 	{
 		entity = _entity;
-		entity -> addEventListener(this, Event::EVENTBASE_NONPOLYCODE+1);
+		entity -> addEventListener(this, Event::EVENTBASE_NONPOLYCODE+113);
+		Vector2 diff = calculateEntityDiffFromCenter();
+		Scroll(diff);
+		lastDiffFromCenter = diff;
 	}	
 }
 
@@ -24,26 +27,35 @@ void ScreenScroller::setBackground(ParallaxBackground* _background)
 	if(_background)
 	{
 		background = _background;
-		screen -> addChild(background);		
+		screen -> addChild(background);			
 	}
 }
 
-void ScreenScroller::Scroll(Number x, Number y)
+void ScreenScroller::Scroll(Polycode::Vector2 diff)
 {
-	screen -> setScreenOffset(-x, -y);
+	screen -> setScreenOffset(-diff.x, -diff.y);
 }
 
 void ScreenScroller::handleEvent(Event* event)
 {
 	// scroll screen & background event
-	if(event->getEventCode() == Event::EVENTBASE_NONPOLYCODE+1)
+	if(event->getEventCode() == Event::EVENTBASE_NONPOLYCODE+113)
 	{
-		Vector2 position = entity -> getPosition2D();
-		Number xDiff = position.x - MagicAndTurtleApp::getResolution().x/2.0;
-		Number yDiff = position.y - MagicAndTurtleApp::getResolution().y/2.0;
+		Vector2 diff = calculateEntityDiffFromCenter();
+		Scroll(diff);
 
-		Scroll(xDiff, yDiff);
-		if(background)
-			background -> Scroll(xDiff, yDiff);
+		if(background) {
+			background -> Scroll(diff.x - lastDiffFromCenter.x, 
+								 diff.y - lastDiffFromCenter.y);			
+		}
+		lastDiffFromCenter = diff;
 	} 	
+}
+
+Polycode::Vector2 ScreenScroller::calculateEntityDiffFromCenter()
+{
+	Vector2 screenPosition = entity -> getScreenPosition();
+	Number xDiff = screenPosition.x - MagicAndTurtleApp::getResolution().x/2.0;
+	Number yDiff = screenPosition.y - MagicAndTurtleApp::getResolution().y/2.0;
+	return Vector2(xDiff, yDiff);
 }

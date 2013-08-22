@@ -100,8 +100,8 @@ void Player::Update()
 	screen -> setVelocity(this, movement.x, movement.y);	
 
 	// player moves
-	Event* event = new Event(Event::EVENTBASE_NONPOLYCODE+1);	
-	this -> dispatchEvent(event, Event::EVENTBASE_NONPOLYCODE+1);
+	Event* event = new Event(Event::EVENTBASE_NONPOLYCODE+113);	
+	this -> dispatchEvent(event, Event::EVENTBASE_NONPOLYCODE+113);
 }
 
 Vector2 Player::calculateMovement()
