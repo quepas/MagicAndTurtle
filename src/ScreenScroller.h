@@ -15,11 +15,13 @@ class ScreenScroller : public Polycode::EventHandler
 		void setBackground(ParallaxBackground* _background);
 		void Scroll(Polycode::Vector2 diff);
 		void handleEvent(Polycode::Event* event);
+		void scrollBackgroundHorizontal(bool horizontalScroll);
 	private:
 		Polycode::Screen* screen;
 		Polycode::ScreenEntity* entity;
 		Polycode::Vector2 lastDiffFromCenter;
 		ParallaxBackground* background;
+		bool bgHorizontalScroll;
 
 		Polycode::Vector2 calculateEntityDiffFromCenter();
 };

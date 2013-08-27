@@ -5,7 +5,7 @@
 using namespace Polycode;
 
 ScreenScroller::ScreenScroller(Screen* _screen, ScreenEntity* _entity /* = nullptr */)
-	: screen(_screen), background(nullptr)
+	: screen(_screen), background(nullptr), bgHorizontalScroll(false)
 {
 	setCenterEntity(_entity);
 }
@@ -27,7 +27,7 @@ void ScreenScroller::setBackground(ParallaxBackground* _background)
 	if(_background)
 	{
 		background = _background;
-		screen -> addChild(background);			
+		screen -> addChild(background);	
 	}
 }
 
@@ -45,8 +45,13 @@ void ScreenScroller::handleEvent(Event* event)
 		Scroll(diff);
 
 		if(background) {
+			Number yDiff = diff.y - lastDiffFromCenter.y;
+
+			if(bgHorizontalScroll)
+				yDiff = 0;
+
 			background -> Scroll(diff.x - lastDiffFromCenter.x, 
-								 diff.y - lastDiffFromCenter.y);			
+								 yDiff);			
 		}
 		lastDiffFromCenter = diff;
 	} 	
@@ -58,4 +63,9 @@ Polycode::Vector2 ScreenScroller::calculateEntityDiffFromCenter()
 	Number xDiff = screenPosition.x - MagicAndTurtleApp::getResolution().x/2.0;
 	Number yDiff = screenPosition.y - MagicAndTurtleApp::getResolution().y/2.0;
 	return Vector2(xDiff, yDiff);
+}
+
+void ScreenScroller::scrollBackgroundHorizontal( bool horizontalScroll )
+{
+	bgHorizontalScroll = horizontalScroll;
 }

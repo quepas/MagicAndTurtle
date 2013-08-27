@@ -35,4 +35,6 @@ class MagicAndTurtleApp : public Polycode::EventHandler
 
 		void initEvents();
 		void handleInputEvent(Polycode::InputEvent* inputEvent);
+		ParallaxBackground* prepareBackground();
+
 };

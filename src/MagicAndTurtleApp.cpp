@@ -44,9 +44,6 @@ void MagicAndTurtleApp::Init()
 	Platform* platform = new Platform(0, 300, "res/platform/normal_1.png");	
 	screen -> addPhysicsChild(platform, PhysicsScreenEntity::ENTITY_RECT, true);
 
-	/*Platform* platform2 = new Platform(400, 200, "res/platform/small_1.png");	
-	screen -> addPhysicsChild(platform2, PhysicsScreenEntity::ENTITY_RECT, true);*/
-
 	ScreenParticleEmitter* fire = new ScreenParticleEmitter(
 		"res/fire/fire_particle.png", Particle::BILLBOARD_PARTICLE, ParticleEmitter::CONTINUOUS_EMITTER, 10, 100, 
 		Vector3(8, -10, 0), Vector3(0, -9.8, 0), 
@@ -55,22 +52,9 @@ void MagicAndTurtleApp::Init()
 	fire -> setPerlinModSize(34);
 	screen -> addPhysicsChild(fire, PhysicsScreenEntity::ENTITY_MESH, true);
 
-	screenScroller = new ScreenScroller(screen, player);	
-	ScreenImage* tree = new ScreenImage("res/tree/tree1.png");
-	tree -> setPosition(-150, 0);		
-	ScreenImage* tree2 = new ScreenImage("res/tree/tree2.png");
-	tree2 -> setPosition(0, 0);	
-	ScreenImage* tree3 =new ScreenImage("res/tree/tree3.png");
-	tree3 -> setPosition(-30, 0);	
-
-	// forest
-	ParallaxBackground* forest = new ParallaxBackground();
-	//screen -> addChild(forest);
-	forest -> Add(tree, 3);
-	forest -> Add(tree2, 2);
-	forest -> Add(tree3, 1);	
-
-	screenScroller->setBackground(forest);
+	screenScroller = new ScreenScroller(screen, player);			
+	screenScroller -> setBackground(prepareBackground());
+	screenScroller -> scrollBackgroundHorizontal(true);
 }
 
 bool MagicAndTurtleApp::Update()
@@ -182,4 +166,38 @@ void MagicAndTurtleApp::handleInputEvent(InputEvent* inputEvent)
 				break;
 		}
 	}
+}
+
+ParallaxBackground* MagicAndTurtleApp::prepareBackground()
+{
+	std::string trees[] = {
+		"res/tree/tree1.png", 
+		"res/tree/tree2.png", 
+		"res/tree/tree3.png" 
+	};
+	ParallaxBackground* forest = new ParallaxBackground(3);
+
+	static int tree_1_width = -300;
+	static int tree_2_width = -400;
+	static int tree_3_width = -500;
+
+	for(int i = 0; i < 10; ++i)
+	{
+		ScreenImage* tree = new ScreenImage(trees[0]);
+		tree -> setPosition(tree_1_width += 300, 0);
+		tree -> setScale(0.5, 0.5, 0.5);
+		forest -> Add(tree, 3);
+
+		ScreenImage* tree2 = new ScreenImage(trees[1]);
+		tree2 -> setPosition(tree_2_width += 300, 10);
+		tree2 -> setScale(0.5, 0.5, 0.5);
+		forest -> Add(tree2, 2);
+		
+		ScreenImage* tree3 = new ScreenImage(trees[2]);
+		tree3 -> setPosition(tree_3_width += 400, 30);
+		tree3 -> setScale(0.5, 0.5, 0.5);
+		forest -> Add(tree3, 1);
+	}	
+
+	return forest;
 }

@@ -7,7 +7,8 @@ using namespace Polycode;
 const float ParallaxBackground::LAYER_BASE_SPEED = 1.0f;
 const float ParallaxBackground::LAYER_INTERVAL_SPEED = 0.25f;
 
-ParallaxBackground::ParallaxBackground()
+ParallaxBackground::ParallaxBackground(unsigned int numLayer)
+	: LayeredEntity(numLayer)
 {}
 
 ParallaxBackground::~ParallaxBackground()
@@ -15,7 +16,7 @@ ParallaxBackground::~ParallaxBackground()
 
 Number ParallaxBackground::calculateLayerSpeed(int layer_number)
 {
-	return LAYER_BASE_SPEED + (layer_number - 1) * LAYER_INTERVAL_SPEED;
+	return LAYER_BASE_SPEED + (getMaxLayers() - layer_number) * LAYER_INTERVAL_SPEED;
 }
 
 void ParallaxBackground::Scroll( Number x, Number y )

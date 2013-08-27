@@ -7,7 +7,7 @@
 class ParallaxBackground : public LayeredEntity
 {
 	public:
-		ParallaxBackground();
+		ParallaxBackground(unsigned int numLayer);
 		~ParallaxBackground();
 		
 		void Scroll(Number x, Number y);		
