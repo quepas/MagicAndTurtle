@@ -4,8 +4,10 @@
 #include <iostream>
 using namespace Polycode;
 
-ScreenScroller::ScreenScroller(Screen* _screen, ScreenEntity* _entity /* = nullptr */)
-	: screen(_screen), background(nullptr), bgHorizontalScroll(false)
+ScreenScroller::ScreenScroller(ScreenWithBackground* _screen, ScreenEntity* _entity /* = nullptr */)
+	:	screen(_screen), 
+		background(_screen->getBackground()), 
+		bgHorizontalScroll(false)
 {
 	setCenterEntity(_entity);
 }
@@ -20,15 +22,6 @@ void ScreenScroller::setCenterEntity(ScreenEntity* _entity)
 		Scroll(diff);
 		lastDiffFromCenter = diff;
 	}	
-}
-
-void ScreenScroller::setBackground(ParallaxBackground* _background)
-{
-	if(_background)
-	{
-		background = _background;
-		screen -> addChild(background);	
-	}
 }
 
 void ScreenScroller::Scroll(Polycode::Vector2 diff)

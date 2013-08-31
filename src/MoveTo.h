@@ -10,7 +10,7 @@ class MoveTo : public SingleEntityTransition
 			float intensity, Polycode::Vector2 position);
 
 		void onTick();
-		
+
 		static void apply(Polycode::ScreenEntity* entity, int time,
 			float intensity, Polycode::Vector2 position);
 	private:

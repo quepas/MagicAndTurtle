@@ -9,6 +9,7 @@
 
 #include "GameMenu.h"
 #include "ScreenScroller.h"
+#include "ScreenWithBackground.h"
 
 /*
  *	@author: quepas
@@ -26,7 +27,7 @@ class MagicAndTurtleApp : public Polycode::EventHandler
 		
 		static Vector2 getResolution();
 	private:
-		Polycode::PhysicsScreen* screen;		
+		ScreenWithBackground* screen;		
 		Polycode::Core* core;
 		ScreenScroller* screenScroller;
 		Player* player;		

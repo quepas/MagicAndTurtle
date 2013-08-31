@@ -8,4 +8,3 @@ public:
 	Portal(Number x, Number y, const Polycode::String& fileName);
 	~Portal(void);
 };
-

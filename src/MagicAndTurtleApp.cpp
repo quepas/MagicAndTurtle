@@ -19,7 +19,7 @@ MagicAndTurtleApp::MagicAndTurtleApp(PolycodeView* view,
 {
 	resolution = res;
 	core = new POLYCODE_CORE(view, resolution.x, resolution.y, fullscreen, true, 0, 0, 60);			
-	screen = new PhysicsScreen();
+	screen = new ScreenWithBackground(prepareBackground());
 	creditsShown = false;		
 }
 
@@ -35,12 +35,14 @@ void MagicAndTurtleApp::Init()
 
 	initEvents();
 	menuShown=true;
-	menu = new GameMenu(core, 40, 32);
-			
+	menu = new GameMenu(core, 40, 32);			
 	player = new Player(screen, 88, 0, "res/wizard/wizard.png");	
 	player -> setPositionMode(ScreenEntity::POSITION_CENTER);
 	screen -> addPhysicsChild(player, PhysicsScreenEntity::ENTITY_MESH, false,0.1,1,0,false,true);
 
+	screenScroller = new ScreenScroller(screen, player);				
+	screenScroller -> scrollBackgroundHorizontal(true);
+	
 	Platform* platform = new Platform(0, 300, "res/platform/normal_1.png");	
 	screen -> addPhysicsChild(platform, PhysicsScreenEntity::ENTITY_RECT, true);
 
@@ -51,10 +53,6 @@ void MagicAndTurtleApp::Init()
 	fire -> setPosition(100, 100);
 	fire -> setPerlinModSize(34);
 	screen -> addPhysicsChild(fire, PhysicsScreenEntity::ENTITY_MESH, true);
-
-	screenScroller = new ScreenScroller(screen, player);			
-	screenScroller -> setBackground(prepareBackground());
-	screenScroller -> scrollBackgroundHorizontal(true);
 }
 
 bool MagicAndTurtleApp::Update()

@@ -35,14 +35,12 @@ void LayeredEntity::changeLayerTo( Polycode::ScreenEntity* entity, unsigned int 
 			for(unsigned int i = 0; i < abs(offset); ++i)
 			{
 				if(offset > 0) // move up
-				{
-					std::cout << "Move up" << std::endl;
+				{					
 					moveChildUp(entityLayeredData -> entity);
 					++(entityLayeredData -> layer);
 				} 
 				else // move down
-				{
-					std::cout << "Move down" << std::endl;
+				{					
 					moveChildDown(entityLayeredData -> entity);
 					--(entityLayeredData -> layer);
 				}
