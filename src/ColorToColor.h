@@ -1,6 +1,7 @@
 #pragma once
 
 #include "SingleEntityTransition.h"
+#include "TransitionUtil.h"
 #include <PolyColor.h>
 #include <PolyScreenEntity.h>
 
@@ -20,7 +21,5 @@ class ColorToColor : public SingleEntityTransition
 			float intensity, Polycode::Color _dest,
 			Polycode::Color _base = Polycode::Color(1.0, 1.0, 1.0, 1.0));
 	private:
-		Polycode::Color base, dest, current, diffScaled;
-		Polycode::Color calculateColorDiff(Polycode::Color base,
-			Polycode::Color dest, float intesity);
+		Polycode::Color base, dest, current, diffScaled;		
 };

@@ -1,4 +1,6 @@
 #include "Player.h"
+#include "SpellFactory.h"
+#include "MoveTo.h"
 
 using namespace Polycode;
 
@@ -167,4 +169,17 @@ Vector2 Player::calculateJump()
 
 void Player::Teleport(Vector2 pos){
 	setPosition(pos);
+}
+
+void Player::Cast( Spell::TYPE type )
+{
+	Spell* castedSpell = SpellFactory::createSpell(type);
+	Vector2 position = getPosition2D();
+	Vector2 destination = Vector2(0.0, position.y);
+
+	destination.x = (lastMove == LEFT) ? -400 : 400;
+
+	castedSpell -> setPosition(position);
+	screen -> addChild(castedSpell);
+	new MoveTo(castedSpell, 2000, 100.0f, destination);
 }

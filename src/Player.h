@@ -5,6 +5,8 @@
 #include <PolyPhysicsScreen.h>
 #include <PolyString.h>
 
+#include "Spell.h"
+
 /*
  *	@author: quepas
  */
@@ -30,6 +32,7 @@ class Player : public Polycode::ScreenSprite
 		void endMove(MOTION direction);
 		void Jump();
 		void Teleport(Polycode::Vector2 pos);
+		void Cast(Spell::TYPE type);
 
 		void Update();
 

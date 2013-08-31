@@ -10,6 +10,7 @@
 #include "GameMenu.h"
 #include "ScreenScroller.h"
 #include "ScreenWithBackground.h"
+#include "Spell.h"
 
 /*
  *	@author: quepas
@@ -32,10 +33,9 @@ class MagicAndTurtleApp : public Polycode::EventHandler
 		ScreenScroller* screenScroller;
 		Player* player;		
 		GameMenu* menu;
-		static Vector2 resolution;
+		static Vector2 resolution;	
 
 		void initEvents();
 		void handleInputEvent(Polycode::InputEvent* inputEvent);
-		ParallaxBackground* prepareBackground();
-
+		ParallaxBackground* prepareBackground();		
 };

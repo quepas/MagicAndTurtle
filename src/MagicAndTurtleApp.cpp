@@ -8,6 +8,8 @@
 #include "ColorToColor.h"
 #include "TransitionMgr.h"
 #include "LayeredEntity.h"
+#include "SpellFactory.h"
+#include "MoveTo.h"
 
 using namespace Polycode;
 
@@ -44,15 +46,7 @@ void MagicAndTurtleApp::Init()
 	screenScroller -> scrollBackgroundHorizontal(true);
 	
 	Platform* platform = new Platform(0, 300, "res/platform/normal_1.png");	
-	screen -> addPhysicsChild(platform, PhysicsScreenEntity::ENTITY_RECT, true);
-
-	ScreenParticleEmitter* fire = new ScreenParticleEmitter(
-		"res/fire/fire_particle.png", Particle::BILLBOARD_PARTICLE, ParticleEmitter::CONTINUOUS_EMITTER, 10, 100, 
-		Vector3(8, -10, 0), Vector3(0, -9.8, 0), 
-		Vector3(-5, 5, 3), Vector3(3, 3, 0));
-	fire -> setPosition(100, 100);
-	fire -> setPerlinModSize(34);
-	screen -> addPhysicsChild(fire, PhysicsScreenEntity::ENTITY_MESH, true);
+	screen -> addPhysicsChild(platform, PhysicsScreenEntity::ENTITY_RECT, true);		
 }
 
 bool MagicAndTurtleApp::Update()
@@ -103,7 +97,7 @@ void MagicAndTurtleApp::handleInputEvent(InputEvent* inputEvent)
 							break;
 					}
 				}
-				if(creditsShown){
+				else if(creditsShown){
 					switch (inputEvent -> getKey())
 					{
 					case KEY_ESCAPE:
@@ -130,6 +124,9 @@ void MagicAndTurtleApp::handleInputEvent(InputEvent* inputEvent)
 							case KEY_SPACE:
 								player -> Jump();
 								break;
+							case KEY_w:
+								player -> Cast(Spell::FIRE_BALL);
+								break;
 							case KEY_ESCAPE:
 								exit(0);
 						}
@@ -152,8 +149,8 @@ void MagicAndTurtleApp::handleInputEvent(InputEvent* inputEvent)
 						break;
 					case KEY_SPACE:						
 						ColorToColor::apply(player, 1000, 50.0f, 
-							Color(1.0, 0.0, 0.0, 1.0));
-						break;
+							Color(1.0, 0.0, 0.0, 1.0));						
+						break;				
 					case KEY_p:
 						TransitionMgr::getInstance().pauseAll(true);
 						break;
