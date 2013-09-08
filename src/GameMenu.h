@@ -5,9 +5,7 @@
 #include <PolyScreen.h>
 #include <vector>
 #include "PolycodeView.h"
-#include "Dictionary.h"
 #include "Credits.h"
-
 
 class GameMenu
 {
@@ -28,4 +26,3 @@ private:
 	int menuItemsnumber;
 	int currentActiveItemNumber;
 	};
-

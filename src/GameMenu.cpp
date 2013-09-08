@@ -1,6 +1,5 @@
 #include "GameMenu.h"
-
-
+#include "I18n.h"
 
 GameMenu::GameMenu(Polycode::Core* core , int intervalTop, int fontSize)
 {	
@@ -18,21 +17,24 @@ GameMenu::GameMenu(Polycode::Core* core , int intervalTop, int fontSize)
 	logo->setPositionMode(ScreenEntity::POSITION_CENTER);
 	logo->setPosition(width/2,logoHeight/2);
 	
+	I18n* menuLocale = new I18n();
+	I18n::setCurrentLng(I18n::EN);
+	menuLocale->parseFile("res/i18n/menu.yaml");
 	
-	ScreenLabel* newgame=new ScreenLabel(Dictionary::MENU_NEW_GAME, fontSize);
+	ScreenLabel* newgame=new ScreenLabel(menuLocale -> get("new_game"), fontSize);
 	newgame->setPositionMode(ScreenEntity::POSITION_CENTER);
 	newgame->setColor(1.0,0.0,0.0,1.0);
 	menuItems.push_back(newgame);
 
-	ScreenLabel* loadgame=new ScreenLabel(Dictionary::MENU_LOAD_GAME, fontSize);
+	ScreenLabel* loadgame=new ScreenLabel(menuLocale -> get("load_game"), fontSize);
 	loadgame->setPositionMode(ScreenEntity::POSITION_CENTER);
 	menuItems.push_back(loadgame);
 	
-	ScreenLabel* credits=new ScreenLabel(Dictionary::MENU_CREDITS, fontSize);
+	ScreenLabel* credits=new ScreenLabel(menuLocale -> get("credits"), fontSize);
 	credits->setPositionMode(ScreenEntity::POSITION_CENTER);
 	menuItems.push_back(credits);
 
-	ScreenLabel* exit=new ScreenLabel(Dictionary::MENU_EXIT, fontSize);
+	ScreenLabel* exit=new ScreenLabel(menuLocale -> get("exit"), fontSize);
 	exit->setPositionMode(ScreenEntity::POSITION_CENTER);
 	menuItems.push_back(exit);
 
@@ -41,8 +43,6 @@ GameMenu::GameMenu(Polycode::Core* core , int intervalTop, int fontSize)
 		menuItems[x]->setPosition(width/2,(((height-logoHeight)/((menuItems.size()+1))*x))+intervalTop+logoHeight);
 		screen->addChild(menuItems[x]);
 	}
-
-
 }
 
 GameMenu::~GameMenu(void)

@@ -1,0 +1,16 @@
+-
+  id: new_game
+  pl: Nowa gra
+  en: New game
+-
+  id: load_game
+  pl: Załaduj grę
+  en: Load game
+-
+  id: credits
+  pl: O grze
+  en: About game
+-
+  id: exit
+  pl: Wyjście
+  en: Exit

@@ -10,6 +10,7 @@
 #include "LayeredEntity.h"
 #include "SpellFactory.h"
 #include "MoveTo.h"
+#include "I18n.h"
 
 using namespace Polycode;
 
@@ -46,7 +47,10 @@ void MagicAndTurtleApp::Init()
 	screenScroller -> scrollBackgroundHorizontal(true);
 	
 	Platform* platform = new Platform(0, 300, "res/platform/normal_1.png");	
-	screen -> addPhysicsChild(platform, PhysicsScreenEntity::ENTITY_RECT, true);		
+	screen -> addPhysicsChild(platform, PhysicsScreenEntity::ENTITY_RECT, true);	
+
+	I18n* internatiolization = new I18n();
+	internatiolization->parseFile("res/i18n/menu.yaml");
 }
 
 bool MagicAndTurtleApp::Update()

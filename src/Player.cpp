@@ -175,7 +175,7 @@ void Player::Cast( Spell::TYPE type )
 {
 	Spell* castedSpell = SpellFactory::createSpell(type);
 	Vector2 position = getPosition2D();
-	Vector2 destination = Vector2(0.0, position.y);
+	Vector2 destination = Vector2(position.x, position.y);
 
 	destination.x = (lastMove == LEFT) ? -400 : 400;
 

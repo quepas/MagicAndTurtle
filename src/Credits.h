@@ -4,7 +4,6 @@
 #include <PolyScreen.h>
 #include <vector>
 #include "PolycodeView.h"
-#include "Dictionary.h"
 
 class Credits
 {
@@ -17,6 +16,4 @@ private:
 	Polycode::Core* core;
 	Polycode::ScreenImage* background;
 	vector<ScreenLabel*> content;
-
 };
-

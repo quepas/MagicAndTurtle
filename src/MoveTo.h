@@ -14,6 +14,5 @@ class MoveTo : public SingleEntityTransition
 		static void apply(Polycode::ScreenEntity* entity, int time,
 			Number intensity, Polycode::Vector2 position);
 	private:
-		Polycode::Vector2 startPosition, endPosition, 
-			currentPosition, diffScaledPosition;
+		Polycode::Vector2 startPosition, endPosition, diffScaledPosition;
 };
