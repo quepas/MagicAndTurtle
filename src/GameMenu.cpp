@@ -12,13 +12,12 @@ GameMenu::GameMenu(Polycode::Core* core , int intervalTop, int fontSize)
 	width=core->getXRes();
 	height=core->getYRes();
 
-	logo=new ScreenImage("res/HUD/menu_logo.png");
+	logo=new ScreenImage("res/common/logo.png");
 	int logoHeight=logo->getHeight();
 	logo->setPositionMode(ScreenEntity::POSITION_CENTER);
 	logo->setPosition(width/2,logoHeight/2);
 	
 	I18n* menuLocale = new I18n();
-	I18n::setCurrentLng(I18n::EN);
 	menuLocale->parseFile("res/i18n/menu.yaml");
 	
 	ScreenLabel* newgame=new ScreenLabel(menuLocale -> get("new_game"), fontSize);
