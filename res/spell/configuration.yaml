@@ -1,0 +1,5 @@
+-
+  id: FIRE_BALL
+  range: 2000.0
+  intensity: 50.0
+  time: 3

@@ -69,6 +69,6 @@ Polycode::String I18n::get( Polycode::String key, LANG_CODE lng )
 		if((*it)->key == key)
 			return (*it) -> values[lng];
 	}
-	return "none";
+	return "$none$";
 }
 

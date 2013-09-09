@@ -177,7 +177,7 @@ void Player::Cast( Spell::TYPE type )
 	Vector2 position = getPosition2D();
 	Vector2 destination = Vector2(position.x, position.y);
 
-	destination.x = (lastMove == LEFT) ? -400 : 400;
+	destination.x += (lastMove == LEFT) ? -1 : 1;
 
 	castedSpell -> setPosition(position);
 	screen -> addChild(castedSpell);

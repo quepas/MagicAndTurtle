@@ -36,6 +36,7 @@ void MagicAndTurtleApp::Init()
 	CoreServices::getInstance()->getResourceManager()->addArchive("res/default.pak");
 	CoreServices::getInstance()->getResourceManager()->addDirResource("default", false);
 
+	I18n::setCurrentLng(I18n::EN);
 	initEvents();
 	menuShown=true;
 	menu = new GameMenu(core, 40, 32);			
@@ -47,10 +48,7 @@ void MagicAndTurtleApp::Init()
 	screenScroller -> scrollBackgroundHorizontal(true);
 	
 	Platform* platform = new Platform(0, 300, "res/platform/normal_1.png");	
-	screen -> addPhysicsChild(platform, PhysicsScreenEntity::ENTITY_RECT, true);	
-
-	I18n* internatiolization = new I18n();
-	internatiolization->parseFile("res/i18n/menu.yaml");
+	screen -> addPhysicsChild(platform, PhysicsScreenEntity::ENTITY_RECT, true);		
 }
 
 bool MagicAndTurtleApp::Update()
