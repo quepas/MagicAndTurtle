@@ -14,11 +14,14 @@ typedef unsigned short uint16;
 typedef unsigned int uint32;
 typedef float float32;
 
+// math
 double _round(double val);
 
+// enum macros
 #define ENUM_TO_STR(label) std::string() + #label
 #define ENUM_TO_LOWER_STR(label) Polycode::String(#label).toLowerCase()
 
+// custom cast
 template <typename typeOutput, typename typeInput>
 typeOutput lexical_cast(typeInput typeIn)
 {
@@ -30,3 +33,6 @@ typeOutput lexical_cast(typeInput typeIn)
 
 	return typeOut;
 };
+
+// global vars
+const std::string NONE = "$none$";

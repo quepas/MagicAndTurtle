@@ -1,20 +1,20 @@
 -
-  id: FIRE_BALL
-  range: 2000.2
-  intensity: 50.5
-  time: 3
-  file: res/spell/fireball.png
-  width: 250
-  height: 100
-  castSeq: 10, 8, 6, 4, 2, 9, 7, 5, 3, 1
-  castTime: 0.15  
+    id: FIRE_BALL
+    range: 2000.2
+    intensity: 50.5
+    time: 3
+    file: res/spell/fireball.png
+    width: 250
+    height: 100
+    castSeq: "10, 8, 6, 4, 2, 9, 7, 5, 3, 1"
+    castTime: 0.15  
 -
-  id: FROST_BALL
-  range: 1500.3
-  intensity: 30.4
-  time: 3
-  file: res/spell/frostball.png
-  width: 250
-  height: 100
-  castSeq: 10, 8, 6, 4, 2, 9, 7, 5, 3, 1
-  castTime: 0.15  
+    id: FROST_BALL
+    range: 1500.3
+    intensity: 30.4
+    time: 3
+    file: res/spell/frostball.png
+    width: 250
+    height: 100
+    castSeq: "10, 8, 6, 4, 2, 9, 7, 5, 3, 1"
+    castTime: 0.15  
