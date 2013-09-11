@@ -2,6 +2,8 @@
 
 #include <cmath>
 #include <string>
+#include <sstream>
+#include <PolyString.h>
 
 // common types
 typedef signed char	int8;
@@ -15,3 +17,16 @@ typedef float float32;
 double _round(double val);
 
 #define ENUM_TO_STR(label) std::string() + #label
+#define ENUM_TO_LOWER_STR(label) Polycode::String(#label).toLowerCase()
+
+template <typename typeOutput, typename typeInput>
+typeOutput lexical_cast(typeInput typeIn)
+{
+	std::stringstream strStreamInterpreter;
+	typeOutput typeOut;
+
+	strStreamInterpreter << typeIn;
+	strStreamInterpreter >> typeOut;
+
+	return typeOut;
+};

@@ -37,6 +37,8 @@ void MagicAndTurtleApp::Init()
 	CoreServices::getInstance()->getResourceManager()->addDirResource("default", false);
 
 	I18n::setCurrentLng(I18n::EN);
+	SpellFactory::getInstance().parseConfiguration("res/spell/configuration.yaml");
+
 	initEvents();
 	menuShown=true;
 	menu = new GameMenu(core, 40, 32);			

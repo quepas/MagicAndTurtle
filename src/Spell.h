@@ -18,8 +18,14 @@ class Spell : public Polycode::ScreenSprite
 
 		struct Parameters
 		{
-			Number intensity, range;
+			Number range;
+			Number intensity;			
 			uint32 time;
+			Polycode::String file;
+			uint16 width;
+			uint16 height;
+			Polycode::String castSeq;
+			Number castTime;
 		};
 
 		Spell(const Polycode::String& filename, uint16 width, uint16 height);

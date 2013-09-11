@@ -173,7 +173,7 @@ void Player::Teleport(Vector2 pos){
 
 void Player::Cast( Spell::TYPE type )
 {
-	Spell* castedSpell = SpellFactory::createSpell(type);
+	Spell* castedSpell = SpellFactory::getInstance().createSpell(type);
 	Vector2 position = getPosition2D();
 	Vector2 destination = Vector2(position.x, position.y);
 

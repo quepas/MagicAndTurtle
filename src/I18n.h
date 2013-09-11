@@ -4,8 +4,6 @@
 #include <PolyString.h>
 #include <yaml-cpp/yaml.h>
 
-#define ENUM_TO_LOWER_STR(label) Polycode::String(#label).toLowerCase()
-
 class I18n
 {
 public:

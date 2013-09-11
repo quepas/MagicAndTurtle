@@ -9,15 +9,23 @@ class SpellFactory
 {
 	public:		
 
-		static Spell* createSpell(Spell::TYPE type);		
-		static Spell* createAndCastSpell(Spell::TYPE type, Player* owner);		
+		Spell* createSpell(Spell::TYPE type);		
+		Spell* createAndCastSpell(Spell::TYPE type, Player* owner);		
 
-		static void parseConfiguration(Polycode::String file);
+		void parseConfiguration(Polycode::String file);
+
+		static SpellFactory& getInstance()
+		{
+			static SpellFactory instance;
+			return instance;
+		}
 	private:
-		SpellFactory() {}
+		SpellFactory();
 		SpellFactory(const SpellFactory&) {}
 		SpellFactory& operator=(const SpellFactory&) {}
 
-		static std::map<Spell::TYPE, Spell::Parameters> spellData;
+		std::map<std::string, Spell::Parameters*> spellData;
 
+		std::string getFullSpellId(Polycode::String id);
+		Spell* createSpellUsingParameters(Spell::Parameters* parameters);
 };

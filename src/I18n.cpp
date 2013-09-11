@@ -1,5 +1,6 @@
 #include "I18n.h"
 #include <fstream>
+#include "GlobalDef.h"
 
 using namespace Polycode;
 
