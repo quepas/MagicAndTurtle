@@ -1,0 +1,18 @@
+-
+	type:	gfx_texture
+	dir:	"res/gfx/texture"	
+-	
+	type: 	gfx_sprite
+	dir:	"res/gfx/sprite"	
+-
+	type:	gfx_shader
+	dir: 	"res/gfx/shader"	
+-
+	type:	sfx_sound
+	dir:	"res/sfx/sound"	
+-
+	type: 	sfx_music
+	dir:	"res/sfx/music"	
+-	
+	type:	i18n
+	dir:	"res/i18n"
