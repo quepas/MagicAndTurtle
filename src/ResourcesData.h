@@ -11,32 +11,33 @@ class ResourcesData
 		ResourcesData(Polycode::String file = "")
 		{
 			if(file.length() > 0)
-				parseFile(file);
+				parseDirectoryFile(file);
 		}
 		~ResourcesData() {};
 
 		Polycode::String getFilepath(Polycode::String id)
 		{
-			Polycode::String file = data[id];
+			Polycode::String file = directories[id];
 			if(file.length() > 0)
 				return file;
 			return Polycode::String(NONE);
 		}
 
-		void parseFile(Polycode::String file)
+		void parseDirectoryFile(Polycode::String file)
 		{
 			YAML::Node nodes = YAML::LoadFile(file.contents);
 
 			for(auto it = nodes.begin(); it != nodes.end(); ++it)
 			{
-				Polycode::String id = (*it)["resourceId"].as<std::string>();
-				Polycode::String file = (*it)["file"].as<std::string>();
+				// TODO: if multiple same 'type' entry -> concat res dir
+				Polycode::String type = (*it)["type"].as<std::string>();
+				Polycode::String directory = (*it)["dir"].as<std::string>();
 
-				if(id.length() > 0 && file.length() > 0)			
-					data.insert(std::make_pair(id, file));
+				if(type.length() > 0 && directory.length() > 0)			
+					directories.insert(std::make_pair(type, directory));
 			}
 		}
 
 	private:
-		std::map<Polycode::String, Polycode::String> data;
+		std::map<Polycode::String, Polycode::String> directories;
 };
