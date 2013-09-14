@@ -12,7 +12,7 @@ GameMenu::GameMenu(Polycode::Core* core , int intervalTop, int fontSize)
 	width=core->getXRes();
 	height=core->getYRes();
 
-	logo=new ScreenImage("res/common/logo.png");
+	logo=new ScreenImage("res/gfx/texture/logo.png");
 	int logoHeight=logo->getHeight();
 	logo->setPositionMode(ScreenEntity::POSITION_CENTER);
 	logo->setPosition(width/2,logoHeight/2);

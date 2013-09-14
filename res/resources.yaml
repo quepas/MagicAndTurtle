@@ -16,3 +16,6 @@
 -	
 	type:	i18n
 	dir:	"res/i18n"
+-
+	type: 	cfg_spell
+	file:	"res/cfg/spell.yaml"

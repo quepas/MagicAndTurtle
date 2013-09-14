@@ -3,7 +3,7 @@
     range: 2000.2
     intensity: 50.5
     time: 3
-    file: res/spell/fireball.png
+    file: res/gfx/sprite/fireball.png
     width: 250
     height: 100
     castSeq: "10, 8, 6, 4, 2, 9, 7, 5, 3, 1"
@@ -13,7 +13,7 @@
     range: 1500.3
     intensity: 30.4
     time: 3
-    file: res/spell/frostball.png
+    file: res/gfx/sprite//frostball.png
     width: 250
     height: 100
     castSeq: "10, 8, 6, 4, 2, 9, 7, 5, 3, 1"

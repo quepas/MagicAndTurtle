@@ -37,19 +37,19 @@ void MagicAndTurtleApp::Init()
 	CoreServices::getInstance()->getResourceManager()->addDirResource("default", false);
 
 	I18n::setCurrentLng(I18n::EN);
-	SpellFactory::getInstance().parseConfiguration("res/spell/configuration.yaml");
+	SpellFactory::getInstance().parseConfiguration("res/cfg/configuration.yaml");
 
 	initEvents();
 	menuShown=true;
 	menu = new GameMenu(core, 40, 32);			
-	player = new Player(screen, 88, 0, "res/wizard/wizard.png");	
+	player = new Player(screen, 88, 0, "res/gfx/sprite/wizard.png");	
 	player -> setPositionMode(ScreenEntity::POSITION_CENTER);
 	screen -> addPhysicsChild(player, PhysicsScreenEntity::ENTITY_MESH, false,0.1,1,0,false,true);
 
 	screenScroller = new ScreenScroller(screen, player);				
 	screenScroller -> scrollBackgroundHorizontal(true);
 	
-	Platform* platform = new Platform(0, 300, "res/platform/normal_1.png");	
+	Platform* platform = new Platform(0, 300, "res/gfx/texture/platform_normal_1.png");	
 	screen -> addPhysicsChild(platform, PhysicsScreenEntity::ENTITY_RECT, true);		
 }
 
@@ -170,9 +170,9 @@ void MagicAndTurtleApp::handleInputEvent(InputEvent* inputEvent)
 ParallaxBackground* MagicAndTurtleApp::prepareBackground()
 {
 	std::string trees[] = {
-		"res/tree/tree1.png", 
-		"res/tree/tree2.png", 
-		"res/tree/tree3.png" 
+		"res/gfx/texture/tree1.png", 
+		"res/gfx/texture/tree2.png", 
+		"res/gfx/texture/tree3.png" 
 	};
 	ParallaxBackground* forest = new ParallaxBackground(3);
 

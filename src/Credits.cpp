@@ -8,7 +8,7 @@ Credits::Credits(Polycode::Core* core)
 	int fontSize=20;
 	int width=core->getXRes();
 
-	background=new ScreenImage("res/credits/credits_background.png");
+	background=new ScreenImage("res/gfx/texture/credits_background.png");
 	background->setPosition(0,0);
 	screen->addChild(background);
 
