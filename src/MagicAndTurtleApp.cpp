@@ -11,6 +11,7 @@
 #include "SpellFactory.h"
 #include "MoveTo.h"
 #include "I18n.h"
+#include "ResourceMgr.h"
 
 using namespace Polycode;
 
@@ -32,13 +33,11 @@ Vector2 MagicAndTurtleApp::getResolution()
 }
 
 void MagicAndTurtleApp::Init()
-{
-	CoreServices::getInstance()->getResourceManager()->addArchive("res/default.pak");
-	CoreServices::getInstance()->getResourceManager()->addDirResource("default", false);
+{	
+	ResourceMgr* resData = new ResourceMgr("res/resources.yaml");	
 
 	I18n::setCurrentLng(I18n::EN);
-	SpellFactory::getInstance().parseConfiguration("res/cfg/configuration.yaml");
-
+	SpellFactory::getInstance().parseConfiguration("res/cfg/spell.yaml");
 	initEvents();
 	menuShown=true;
 	menu = new GameMenu(core, 40, 32);			
