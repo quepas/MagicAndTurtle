@@ -57,6 +57,14 @@ void ResourceMgr::loadFromDirectories()
 	static std::string typeSfxMusic = "sfx_music";
 	static std::string typei18n = "i18n";
 	static std::string typeCfgSpell = "cfg_spell";
+
+	polyResourceMgr->addDirResource(directories[typeGfxTexture]);
+	polyResourceMgr->addDirResource(directories[typeGfxSprite]);
+	polyResourceMgr->addDirResource(directories[typeGfxShader]);
+	polyResourceMgr->addDirResource(directories[typeSfxSound]);
+	polyResourceMgr->addDirResource(directories[typeSfxMusic]);
+	polyResourceMgr->addDirResource(directories[typei18n]);
+	polyResourceMgr->addDirResource(directories[typeCfgSpell]);
 }
 
 void ResourceMgr::loadFromDirectoryFile( Polycode::String file )
