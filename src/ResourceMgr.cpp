@@ -1,10 +1,19 @@
 #include "ResourceMgr.h"
 
-ResourceMgr::ResourceMgr( Polycode::String file /*= ""*/ )
+using namespace Polycode;
+
+const std::string ResourceMgr::GFX_TEXTURE = "gfx_texture";
+const std::string ResourceMgr::GFX_SPRITE = "gfx_sprite";
+const std::string ResourceMgr::GFX_SHADER = "gfx_shader";
+const std::string ResourceMgr::SFX_SOUND = "sfx_sound";
+const std::string ResourceMgr::SFX_MUSIC = "sfx_music";
+const std::string ResourceMgr::I18N = "i18n";
+const std::string ResourceMgr::CFG_SPELL = "cfg_spell";
+
+ResourceMgr::ResourceMgr( String file /*= ""*/ )
 {
-	directories = std::map<std::string, Polycode::String>();
-	polyResourceMgr = 
-		Polycode::CoreServices::getInstance()->getResourceManager();
+	directories = std::map<std::string, String>();
+	polyResourceMgr = CoreServices::getInstance()->getResourceManager();
 	polyResourceMgr -> addArchive("res/default.pak");
 	polyResourceMgr -> addDirResource("default", false);
 
@@ -17,15 +26,15 @@ ResourceMgr::~ResourceMgr()
 
 }
 
-Polycode::String ResourceMgr::getFilepath( Polycode::String id )
+String ResourceMgr::getFilepath( String id )
 {
-	Polycode::String file = directories[id.getSTLString()];
+	String file = directories[id.getSTLString()];
 	if(file.length() > 0)
 		return file;
-	return Polycode::String(NONE);
+	return String(NONE);
 }
 
-void ResourceMgr::parseDirectoryFile( Polycode::String file )
+void ResourceMgr::parseDirectoryFile( String file )
 {
 	static std::string keyType = "type";
 	static std::string keyDir = "dir";
@@ -35,7 +44,7 @@ void ResourceMgr::parseDirectoryFile( Polycode::String file )
 	for(auto it = nodes.begin(); it != nodes.end(); ++it)
 	{				
 		std::string type = (*it)[keyType].as<std::string>();
-		Polycode::String reference;
+		String reference;
 
 		if((*it)[keyDir].IsDefined()) {
 			reference = (*it)[keyDir].as<std::string>();
@@ -48,27 +57,21 @@ void ResourceMgr::parseDirectoryFile( Polycode::String file )
 	}
 }
 
-void ResourceMgr::loadFromDirectories()
-{
-	static std::string typeGfxTexture = "gfx_texture";
-	static std::string typeGfxSprite = "gfx_sprite";
-	static std::string typeGfxShader = "gfx_shader";
-	static std::string typeSfxSound = "sfx_sound";
-	static std::string typeSfxMusic = "sfx_music";
-	static std::string typei18n = "i18n";
-	static std::string typeCfgSpell = "cfg_spell";
-
-	polyResourceMgr->addDirResource(directories[typeGfxTexture]);
-	polyResourceMgr->addDirResource(directories[typeGfxSprite]);
-	polyResourceMgr->addDirResource(directories[typeGfxShader]);
-	polyResourceMgr->addDirResource(directories[typeSfxSound]);
-	polyResourceMgr->addDirResource(directories[typeSfxMusic]);
-	polyResourceMgr->addDirResource(directories[typei18n]);
-	polyResourceMgr->addDirResource(directories[typeCfgSpell]);
-}
-
-void ResourceMgr::loadFromDirectoryFile( Polycode::String file )
+void ResourceMgr::loadFromDirectoryFile( String file )
 {
 	parseDirectoryFile(file);
-	loadFromDirectories();
+
+	loadFromNonEmptyDirectory(GFX_TEXTURE);
+	loadFromNonEmptyDirectory(GFX_SPRITE);
+	loadFromNonEmptyDirectory(GFX_SHADER);
+	loadFromNonEmptyDirectory(SFX_MUSIC);
+	loadFromNonEmptyDirectory(SFX_SOUND);
+	loadFromNonEmptyDirectory(I18N);
+	loadFromNonEmptyDirectory(CFG_SPELL);	
+}
+
+void ResourceMgr::loadFromNonEmptyDirectory( std::string dir )
+{
+	if(directories.find(dir) != directories.end())
+		polyResourceMgr->addDirResource(directories[dir]);
 }
