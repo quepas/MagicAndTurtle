@@ -12,7 +12,7 @@ class ScreenScroller : public Polycode::EventHandler
 	public:
 		ScreenScroller(ScreenWithBackground* _screen, Polycode::ScreenEntity* _entity = nullptr);
 
-		void setCenterEntity(Polycode::ScreenEntity* _entity);				
+		void setCenterEntity(Polycode::ScreenEntity* _entity);
 		void Scroll(Polycode::Vector2 diff);
 		void handleEvent(Polycode::Event* event);
 		void scrollBackgroundHorizontal(bool horizontalScroll);

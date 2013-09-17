@@ -1,3 +1,6 @@
+name: forest
+bg: forestBg 
+
 -
 	resourceId: platform_small
 	posX: 100

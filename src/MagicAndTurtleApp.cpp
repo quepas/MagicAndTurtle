@@ -33,17 +33,29 @@ Vector2 MagicAndTurtleApp::getResolution()
 }
 
 void MagicAndTurtleApp::Init()
-{	
-	ResourceMgr* resData = new ResourceMgr("res/resources.yaml");	
-
+{			
+	ResourceMgr::getInstance().loadFromDirectoryFile("res/resources.yaml");
 	I18n::setCurrentLng(I18n::EN);
 	SpellFactory::getInstance().parseConfiguration("res/cfg/spell.yaml");
 	initEvents();
 	menuShown=true;
 	menu = new GameMenu(core, 40, 32);			
-	player = new Player(screen, 88, 0, "res/gfx/sprite/wizard.png");	
+
+	ScreenEntityInstance* testMapEntity = new ScreenEntityInstance("res/map/test.entity2d");
+	testMapEntity->Translate(-100, 100, 0);
+	screen->addChild(testMapEntity);
+	ScreenEntity* platform_1 = (ScreenEntity*)testMapEntity->getEntityById("platform_1", true);
+	screen->trackPhysicsChild(platform_1, PhysicsScreenEntity::ENTITY_RECT, true);
+	ScreenEntity* box_1 = (ScreenEntity*)testMapEntity->getEntityById("ScreenShape.1", true);
+	screen->trackPhysicsChild(box_1, PhysicsScreenEntity::ENTITY_RECT, false);
+	ScreenEntity* box_2 = (ScreenEntity*)testMapEntity->getEntityById("ScreenShape.2", true);
+	screen->trackPhysicsChild(box_2, PhysicsScreenEntity::ENTITY_RECT, false);
+
+	player = new Player(screen, 88, 0, "res/gfx/sprite/wizardd.png");	
+	player -> setTexture(ResourceMgr::getInstance().getTexture("wizard"));
+	player -> setSpriteSize(88, 147);
 	player -> setPositionMode(ScreenEntity::POSITION_CENTER);
-	screen -> addPhysicsChild(player, PhysicsScreenEntity::ENTITY_MESH, false,0.1,1,0,false,true);
+	screen -> addPhysicsChild(player, PhysicsScreenEntity::ENTITY_MESH, false,0.1,1,0,false,true);	
 
 	screenScroller = new ScreenScroller(screen, player);				
 	screenScroller -> scrollBackgroundHorizontal(true);

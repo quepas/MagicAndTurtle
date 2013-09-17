@@ -1,5 +1,7 @@
 #include "ResourceMgr.h"
 
+#include <PolyResource.h>
+
 using namespace Polycode;
 
 const std::string ResourceMgr::GFX_TEXTURE = "gfx_texture";
@@ -10,20 +12,12 @@ const std::string ResourceMgr::SFX_MUSIC = "sfx_music";
 const std::string ResourceMgr::I18N = "i18n";
 const std::string ResourceMgr::CFG_SPELL = "cfg_spell";
 
-ResourceMgr::ResourceMgr( String file /*= ""*/ )
+ResourceMgr::ResourceMgr()
 {
 	directories = std::map<std::string, String>();
 	polyResourceMgr = CoreServices::getInstance()->getResourceManager();
 	polyResourceMgr -> addArchive("res/default.pak");
-	polyResourceMgr -> addDirResource("default", false);
-
-	if(file.length() > 0)
-		loadFromDirectoryFile(file);
-}
-
-ResourceMgr::~ResourceMgr()
-{
-
+	polyResourceMgr -> addDirResource("default", false);	
 }
 
 String ResourceMgr::getFilepath( String id )
@@ -74,4 +68,10 @@ void ResourceMgr::loadFromNonEmptyDirectory( std::string dir )
 {
 	if(directories.find(dir) != directories.end())
 		polyResourceMgr->addDirResource(directories[dir]);
+}
+
+Texture* ResourceMgr::getTexture( String name )
+{
+	name = (name.toLowerCase().rfind(".png") != std::string::npos) ? name : name + ".png";
+	return (Texture*)polyResourceMgr->getResource(Resource::RESOURCE_TEXTURE, name);	
 }

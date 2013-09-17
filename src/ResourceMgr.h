@@ -7,16 +7,26 @@
 #include <yaml-cpp/yaml.h>
 #include "GlobalDef.h"
 
+/*
+ *	Polycode::ResourceManager wrapper
+ * 
+ *	@author: quepas
+ */
 class ResourceMgr
 {
 	public:
-		ResourceMgr(Polycode::String file = "");		
-		~ResourceMgr();
-
+						
 		Polycode::String getFilepath(Polycode::String id);		
 		Polycode::ResourceManager* getPolyResourceMgr() { return polyResourceMgr; }
 
+		Polycode::Texture* getTexture(Polycode::String name);		
 		void loadFromDirectoryFile(Polycode::String file);
+
+		static ResourceMgr& getInstance()
+		{
+			static ResourceMgr instance;
+			return instance;
+		}
 
 		static const std::string GFX_TEXTURE;
 		static const std::string GFX_SPRITE;
@@ -25,7 +35,11 @@ class ResourceMgr
 		static const std::string SFX_MUSIC;
 		static const std::string I18N;
 		static const std::string CFG_SPELL;
+
 	private:
+		ResourceMgr();
+		ResourceMgr(const ResourceMgr&) {}
+		ResourceMgr& operator=(const ResourceMgr&) {}
 
 		void parseDirectoryFile(Polycode::String file);				
 		void loadFromNonEmptyDirectory(std::string dir);
