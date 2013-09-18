@@ -12,6 +12,7 @@
 #include "MoveTo.h"
 #include "I18n.h"
 #include "ResourceMgr.h"
+#include "ScreenUtils.h"
 
 using namespace Polycode;
 
@@ -41,15 +42,7 @@ void MagicAndTurtleApp::Init()
 	menuShown=true;
 	menu = new GameMenu(core, 40, 32);			
 
-	ScreenEntityInstance* testMapEntity = new ScreenEntityInstance("res/map/test.entity2d");
-	testMapEntity->Translate(-100, 100, 0);
-	screen->addChild(testMapEntity);
-	ScreenEntity* platform_1 = (ScreenEntity*)testMapEntity->getEntityById("platform_1", true);
-	screen->trackPhysicsChild(platform_1, PhysicsScreenEntity::ENTITY_RECT, true);
-	ScreenEntity* box_1 = (ScreenEntity*)testMapEntity->getEntityById("ScreenShape.1", true);
-	screen->trackPhysicsChild(box_1, PhysicsScreenEntity::ENTITY_RECT, false);
-	ScreenEntity* box_2 = (ScreenEntity*)testMapEntity->getEntityById("ScreenShape.2", true);
-	screen->trackPhysicsChild(box_2, PhysicsScreenEntity::ENTITY_RECT, false);
+	ScreenUtils::setupScreenFromEntity2dFileWithMapCfg(screen, "res/map/test2.entity2d", "");
 
 	player = new Player(screen, 88, 0, "res/gfx/sprite/wizardd.png");	
 	player -> setTexture(ResourceMgr::getInstance().getTexture("wizard"));
