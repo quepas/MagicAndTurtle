@@ -13,6 +13,7 @@
 #include "I18n.h"
 #include "ResourceMgr.h"
 #include "ScreenUtils.h"
+#include "Map.h"
 
 using namespace Polycode;
 
@@ -55,6 +56,9 @@ void MagicAndTurtleApp::Init()
 	
 	Platform* platform = new Platform(0, 300, "res/gfx/texture/platform_normal_1.png");	
 	screen -> addPhysicsChild(platform, PhysicsScreenEntity::ENTITY_RECT, true);		
+
+	Map* testMap = new Map("res/map/map1.txt");
+	testMap->renderOnScreen(screen);
 }
 
 bool MagicAndTurtleApp::Update()
